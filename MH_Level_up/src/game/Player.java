@@ -17,34 +17,56 @@ public class Player {
 		
 		int steps;
 
-		int playerPoints;
-		int playerFp;
-		int playerTp;
-		int playerAp;
-
-	
 	public Player(String username, int id) {
 		this.username = username;
 		this.id = id;
-		playerPoints = points;
-		playerFp = fp;
-		playerTp =tp;
-		playerAp =ap;
+		points = 0;
+		fp = 0;
+		tp = 0;
+		ap = 0;
+		steps = 0;
 	}
 	
 	public Player(int id) {
+		username = " ";
 		this.id = id;
 		points = 0;
+		fp = 0;
+		tp = 0;
+		ap = 0;
+		steps = 0;
 	}
 	
+	public Player(String username, int id, int points) {
+		this.username = username;
+		this.id = id;
+		this.points = points;
+		fp = 0;
+		tp = 0;
+		ap = 0;
+		steps = 0;
+	}
+	
+	public Player(int id, int points) {
+		username = " ";
+		this.id = id;
+		this.points = points;
+		fp = 0;
+		tp = 0;
+		ap = 0;
+		steps = 0;
+	}
+	
+	
+
 	public int compareTo(Player p) {
-		return this.playerPoints - p.playerPoints;
+		return this.points - p.points;
 	}
 	
 	public boolean equals(Object o) {
 		if(o instanceof Player) {
 			Player p =  (Player) o;
-			if(this.playerPoints == p.playerPoints) {
+			if(this.id == p.id) {
 				return true;
 			}
 			else {
@@ -58,19 +80,23 @@ public class Player {
 	
 	//adding friend points to fp of player and total points
 	public void addFp(Player p2) {
-		fp += 50;
+		fp += 4000;
 		points += fp;
 	}
 	
-	public void addTp(){
+	public void addTp(int t){
 		//want to replace 0 with a scanner so 
-		tp += 0;
+		tp += t;
 		points += tp; 
 	}
 	
 	public void addAp() {
-		ap += (steps *.05);
+		ap += (steps/2);
 		points += ap;
+	}
+	
+	public void addSteps(int s) {
+		steps += s;
 	}
 	
 	public String getUsername() {
@@ -81,25 +107,11 @@ public class Player {
 		return id;
 	}
 
-	public int getPlayerPoints() {
-		return points;
+	public int getSteps() {
+		return steps;
 	}
 
-	public int getPlayerFp() {
-		return fp;
+	public String toString() {
+		return String.format("username= %s, id = %d\nPoints=%d\nFp=%d\nTp=%d\nAp=%d\n", username, id, points, fp , tp, ap);
 	}
-
-
-	public int getPlayerTp() {
-		return tp;
-	}
-
-
-
-	public int getPlayerAp() {
-		return ap;
-	}
-
-	
-
 }
